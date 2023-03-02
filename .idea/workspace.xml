@@ -5,46 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b75e14ec-4287-4334-9453-f397eea31a63" name="变更" comment="">
-      <change afterPath="$PROJECT_DIR$/xfm_code/service/interface/api/etc/user-api.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/xfm_code/service/interface/api/go.mod" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/xfm_code/service/interface/api/go.sum" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/xfm_code/service/interface/api/internal/common/errorx/baseerror.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/xfm_code/service/interface/api/internal/common/httpcli/requestcli.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/xfm_code/service/interface/api/internal/config/config.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/xfm_code/service/interface/api/internal/handler/loginhandler.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/xfm_code/service/interface/api/internal/handler/routes.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/xfm_code/service/interface/api/internal/logic/loginlogic.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/xfm_code/service/interface/api/internal/svc/servicecontext.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/xfm_code/service/interface/api/internal/types/types.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/xfm_code/service/interface/api/user.api" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/xfm_code/service/interface/api/user.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/xfm_code/service/interface/model/user.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/xfm_code/service/interface/model/usermodel.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/xfm_code/service/interface/model/usermodel_gen.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/xfm_code/service/interface/model/vars.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/xfm_code/service/interface/rpc/etc/user.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/xfm_code/service/interface/rpc/go.mod" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/xfm_code/service/interface/rpc/internal/config/config.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/xfm_code/service/interface/rpc/internal/logic/getuserlogic.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/xfm_code/service/interface/rpc/internal/server/userserver.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/xfm_code/service/interface/rpc/internal/svc/servicecontext.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/xfm_code/service/interface/rpc/types/user/user.pb.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/xfm_code/service/interface/rpc/types/user/user_grpc.pb.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/xfm_code/service/interface/rpc/user.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/xfm_code/service/interface/rpc/user.proto" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/xfm_code/service/interface/rpc/userclient/user.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/xfm_code/service/search/api/etc/search-api.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/xfm_code/service/search/api/go.mod" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/xfm_code/service/search/api/internal/config/config.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/xfm_code/service/search/api/internal/handler/pinghandler.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/xfm_code/service/search/api/internal/handler/routes.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/xfm_code/service/search/api/internal/handler/searchhandler.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/xfm_code/service/search/api/internal/logic/pinglogic.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/xfm_code/service/search/api/internal/logic/searchlogic.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/xfm_code/service/search/api/internal/svc/servicecontext.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/xfm_code/service/search/api/internal/types/types.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/xfm_code/service/search/api/search.api" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/xfm_code/service/search/api/search.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -136,6 +97,31 @@
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
+        <entry key="846cc072-f795-4e9e-9d4f-54ac44d47f12">
+          <value>
+            <State>
+              <option name="SHOW_ONLY_AFFECTED_CHANGES" value="true" />
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="HEAD" />
+                      </list>
+                    </value>
+                  </entry>
+                  <entry key="structure">
+                    <value>
+                      <list>
+                        <option value="dir:D:/Xfm/xfm_code" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
         <entry key="MAIN">
           <value>
             <State />
