@@ -1,0 +1,83 @@
+type (
+    LoginReq {
+        Username string `json:"username"`
+        Password string `json:"password"`
+    }
+
+    LoginReply {
+        Id int64 `json:"id"`
+        Name string `json:"name"`
+        Gender string `json:"gender"`
+        AccessToken string `json:"accessToken"`
+        AccessExpire int64 `json:"accessExpire"`
+        RefreshAfter int64 `json:"refreshAfter"`
+    }
+)
+type (
+    CodeStatusRequest {
+        Uid string `json:"uid"`
+    }
+    CodeStatusResponse {
+        Status string `json:"status"`
+    }
+)
+
+type (
+    RequestConsumptionRequest {
+        Uid string `json:"uid"`
+    }
+    RequestConsumptionResponse {
+    }
+)
+
+type (
+    GetPaymentRequestReq {
+        Uid string `json:"uid"`
+        OrderId string `json:"orderId"`
+    }
+    GetPaymentRequestResponse {
+        Message string `json:"message"`
+    }
+)
+type (
+    CheckNonSecretRequest {
+        Uid string `json:"uid"`
+    }
+    CheckNonSecretResponse {
+        Status string `json:"status"`
+    }
+)
+type (
+    ConsumptionRepositoryRequest {
+        Uid string `json:"uid"`
+        OrderId string `json:"orderId"`
+    }
+    ConsumptionRepositoryResponse {
+        Success string `json:"success"`
+    }
+)
+type (
+    PaymentAgreementRequest {
+        Uid string `json:"uid"`
+    }
+    PaymentAgreementResponse {
+        Status string `json:"status"`
+    }
+)
+service user-api {
+    @handler login
+    post /user/login (LoginReq) returns (LoginReply)
+
+    @handler QueryCodeStatus     //查询消费码状态
+    post /xfmcode/QueryCodeStatus (CodeStatusRequest) returns (CodeStatusResponse)
+    @handler RequestConsumption //用户申请消费码返回给用户
+    post /xfmcode/RequestConsumption (RequestConsumptionRequest) returns (RequestConsumptionResponse)
+    @handler GetPaymentRequest //从支付方获取支付签约请求结果
+    post /xfmcode/GetPaymentRequest (GetPaymentRequestReq) returns (GetPaymentRequestResponse)
+    @handler CheckNonSecret //免密支付方式查询是否开通接口
+    post /xfmcode/CheckNonSecret (CheckNonSecretRequest) returns (CheckNonSecretResponse)
+    @handler ConsumptionRepository//用户消费码结果返回存库
+    post /xfmcode/ConsumptionRepository (ConsumptionRepositoryRequest) returns (ConsumptionRepositoryResponse)
+    @handler PaymentAgreement//支付签约请求到支付方
+    post /xfmcode/PaymentAgreement (PaymentAgreementRequest) returns (PaymentAgreementResponse)
+}
