@@ -1,18 +1,31 @@
 type (
-	LoginReq {
-		Username string `json:"username"`
-		Password string `json:"password"`
+	expandReq {
+		Shorten string `form:"shorten"`
 	}
-	LoginReply {
-		Id           int64  `json:"id"`
-		Name         string `json:"name"`
-		Gender       string `json:"gender"`
-		AccessToken  string `json:"accessToken"`
-		AccessExpire int64  `json:"accessExpire"`
-		RefreshAfter int64  `json:"refreshAfter"`
+
+	expandResp {
+		Url string `json:"url"`
 	}
 )
-service user-api {
-	@handler login
-	post /user/login (LoginReq) returns (LoginReply)
+
+type (
+	shortenReq {
+		//		Url string `form:"url"`
+	}
+
+	shortenResp {
+		Shorten string `json:"shorten"`
+	}
+)
+
+service shorturl-api {
+	@server(
+		handler: ShortenHandler
+	)
+	get /shorten(shortenReq) returns(shortenResp)
+	
+	@server(
+		handler: ExpandHandler
+	)
+	get /expand(expandReq) returns(expandResp)
 }

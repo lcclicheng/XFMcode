@@ -13,9 +13,14 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 	server.AddRoutes(
 		[]rest.Route{
 			{
-				Method:  http.MethodPost,
-				Path:    "/user/login",
-				Handler: loginHandler(serverCtx),
+				Method:  http.MethodGet,
+				Path:    "/shorten",
+				Handler: ShortenHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodGet,
+				Path:    "/expand",
+				Handler: ExpandHandler(serverCtx),
 			},
 		},
 	)
