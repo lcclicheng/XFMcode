@@ -17,36 +17,6 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 				Path:    "/user/login",
 				Handler: loginHandler(serverCtx),
 			},
-			{
-				Method:  http.MethodPost,
-				Path:    "/xfmcode/QueryCodeStatus",
-				Handler: QueryCodeStatusHandler(serverCtx),
-			},
-			{
-				Method:  http.MethodPost,
-				Path:    "/xfmcode/RequestConsumption",
-				Handler: RequestConsumptionHandler(serverCtx),
-			},
-			{
-				Method:  http.MethodPost,
-				Path:    "/xfmcode/GetPaymentRequest",
-				Handler: GetPaymentRequestHandler(serverCtx),
-			},
-			{
-				Method:  http.MethodPost,
-				Path:    "/xfmcode/CheckNonSecret",
-				Handler: CheckNonSecretHandler(serverCtx),
-			},
-			{
-				Method:  http.MethodPost,
-				Path:    "/xfmcode/ConsumptionRepository",
-				Handler: ConsumptionRepositoryHandler(serverCtx),
-			},
-			{
-				Method:  http.MethodPost,
-				Path:    "/xfmcode/PaymentAgreement",
-				Handler: PaymentAgreementHandler(serverCtx),
-			},
 		},
 	)
 }
