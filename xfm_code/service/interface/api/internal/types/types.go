@@ -20,5 +20,11 @@ type QueryConsumeStatusReq struct {
 	Uid string `form:"uid"`
 }
 type QueryConsumeStatusResp struct {
+	Code   int     `json:"code"`
+	Errmsg string  `json:"errmsg"`
+	Data   *[]Data `json:"data"`
+	Status string `json:"status"`
+}
+type Data struct {
 	Status string `json:"status"`
 }
