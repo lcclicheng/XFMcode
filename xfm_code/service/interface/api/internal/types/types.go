@@ -15,3 +15,10 @@ type ShortenReq struct {
 type ShortenResp struct {
 	Shorten string `json:"shorten"`
 }
+
+type QueryConsumeStatusReq struct {
+	Uid string `form:"uid"`
+}
+type QueryConsumeStatusResp struct {
+	Status string `json:"status"`
+}
