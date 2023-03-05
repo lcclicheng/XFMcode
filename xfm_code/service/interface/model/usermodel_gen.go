@@ -30,6 +30,7 @@ type (
 	userModel interface {
 		Insert(ctx context.Context, data *User) (sql.Result, error)
 		FindOne(ctx context.Context, id int64) (*User, error)
+		FindStatus(ctx context.Context, Uid string) (*User, error)
 		FindOneByNumber(ctx context.Context, number string) (*User, error)
 		Update(ctx context.Context, data *User) error
 		Delete(ctx context.Context, id int64) error
@@ -79,6 +80,23 @@ func (m *defaultUserModel) FindOne(ctx context.Context, id int64) (*User, error)
 	err := m.QueryRowCtx(ctx, &resp, userIdKey, func(ctx context.Context, conn sqlx.SqlConn, v any) error {
 		query := fmt.Sprintf("select %s from %s where `id` = ? limit 1", userRows, m.table)
 		return conn.QueryRowCtx(ctx, v, query, id)
+	})
+	switch err {
+	case nil:
+		return &resp, nil
+	case sqlc.ErrNotFound:
+		return nil, ErrNotFound
+	default:
+		return nil, err
+	}
+}
+
+func (m *defaultUserModel) FindStatus(ctx context.Context, Uid string) (*User, error) {
+	UidKey := fmt.Sprintf("%s%v", cacheUserIdPrefix, Uid)
+	var resp User
+	err := m.QueryRowCtx(ctx, &resp, UidKey, func(ctx context.Context, conn sqlx.SqlConn, v any) error {
+		query := fmt.Sprintf("SELECT Status FROM codestatus WHERE Uid=?")
+		return conn.QueryRowCtx(ctx, v, query, Uid)
 	})
 	switch err {
 	case nil:
