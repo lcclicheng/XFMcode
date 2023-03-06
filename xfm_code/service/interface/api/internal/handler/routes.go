@@ -22,13 +22,6 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 				Path:    "/expand",
 				Handler: ExpandHandler(serverCtx),
 			},
-
-			//查询消费码状态
-			{
-				Method:  http.MethodGet,
-				Path:    "/queryConsumeStatus",
-				Handler: QueryConsumeStatusHandler(serverCtx),
-			},
 		},
 	)
 }
