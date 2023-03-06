@@ -10,7 +10,7 @@ type (
 
 type (
 	shortenReq {
-		//		Url string `form:"url"`
+		Url string `form:"url"`
 	}
 
 	shortenResp {
@@ -22,10 +22,10 @@ service shorturl-api {
 	@server(
 		handler: ShortenHandler
 	)
-	get /shorten(shortenReq) returns(shortenResp)
+	get /shorten (shortenReq) returns (shortenResp)
 	
 	@server(
 		handler: ExpandHandler
 	)
-	get /expand(expandReq) returns(expandResp)
+	get /expand (expandReq) returns (expandResp)
 }

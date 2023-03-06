@@ -2,6 +2,7 @@ package logic
 
 import (
 	"context"
+	"xfm_code/service/interface/rpc/transform/transformer"
 
 	"api/internal/svc"
 	"api/internal/types"
@@ -24,7 +25,16 @@ func NewExpandLogic(ctx context.Context, svcCtx *svc.ServiceContext) *ExpandLogi
 }
 
 func (l *ExpandLogic) Expand(req *types.ExpandReq) (resp *types.ExpandResp, err error) {
-	// todo: add your logic here and delete this line
+	resp, err := l.svcCtx.Transformer.Expand(l.ctx, &transformer.ExpandReq{
+		Shorten: req.Shorten,
+	})
+	if err != nil {
+		return types.ExpandResp{}, err
+	}
+
+	return types.ExpandResp{
+		Url: resp.Url,
+	}, nil
 
 	return
 }
