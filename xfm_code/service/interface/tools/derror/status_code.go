@@ -1,7 +1,7 @@
 package derror
 
 import (
-	"git.woa.com/pdata/common/utils/gerror"
+	"tools/gerror"
 )
 
 const (

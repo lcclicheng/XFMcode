@@ -23,7 +23,7 @@ func NewShortenLogic(ctx context.Context, svcCtx *svc.ServiceContext) *ShortenLo
 	}
 }
 
-func (l *ShortenLogic) Shorten(req types.ShortenReq) (types.ShortenResp, error) {
+func (l *ShortenLogic) Shorten(req *types.ShortenReq) (types.ShortenResp, error) {
 	// 手动代码开始
 	resp, err := l.svcCtx.Transformer.Shorten(l.ctx, &transformer.ShortenReq{
 		Url: req.Url,

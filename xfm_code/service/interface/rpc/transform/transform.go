@@ -4,10 +4,10 @@ import (
 	"flag"
 	"fmt"
 
-	"transform/internal/config"
-	"transform/internal/server"
-	"transform/internal/svc"
-	"transform/pb"
+	"github.com/lcclicheng/XFMcode/xfm_code/service/interface/rpc/transform/internal/config"
+	"github.com/lcclicheng/XFMcode/xfm_code/service/interface/rpc/transform/internal/server"
+	"github.com/lcclicheng/XFMcode/xfm_code/service/interface/rpc/transform/internal/svc"
+	"github.com/lcclicheng/XFMcode/xfm_code/service/interface/rpc/transform/pb"
 
 	"github.com/zeromicro/go-zero/core/conf"
 	"github.com/zeromicro/go-zero/core/service"

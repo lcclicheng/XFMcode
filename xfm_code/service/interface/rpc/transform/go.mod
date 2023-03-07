@@ -8,4 +8,4 @@ require (
 	google.golang.org/grpc v1.53.0
 )
 
-replace github.com/lcclicheng/XFMcode/xfm_code/service/interface/rpc/transform => ../rpc/transform
+//replace github.com/lcclicheng/XFMcode/xfm_code/service/interface/rpc/transform => ../rpc/transform

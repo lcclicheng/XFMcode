@@ -4,7 +4,7 @@ import (
 	"regexp"
 	"strconv"
 
-	"git.woa.com/pdata/datamore/tools/derror"
+	"tools/derror"
 )
 
 func ParamsRegexp(pattern string, params map[string]string) (bool, error) {

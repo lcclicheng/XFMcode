@@ -24,7 +24,7 @@ func NewExpandLogic(ctx context.Context, svcCtx *svc.ServiceContext) *ExpandLogi
 	}
 }
 
-func (l *ExpandLogic) Expand(req types.ExpandReq) (types.ExpandResp, error) {
+func (l *ExpandLogic) Expand(req *types.ExpandReq) (types.ExpandResp, error) {
 	// 手动代码开始
 	resp, err := l.svcCtx.Transformer.Expand(l.ctx, &transformer.ExpandReq{
 		Shorten: req.Shorten,
