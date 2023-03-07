@@ -2,9 +2,8 @@ package logic
 
 import (
 	"context"
-
-	"transform/internal/svc"
-	"transform/pb"
+	"github.com/lcclicheng/XFMcode/xfm_code/service/interface/rpc/transform/internal/svc"
+	"github.com/lcclicheng/XFMcode/xfm_code/service/interface/rpc/transform/pb"
 
 	"github.com/zeromicro/go-zero/core/logx"
 )

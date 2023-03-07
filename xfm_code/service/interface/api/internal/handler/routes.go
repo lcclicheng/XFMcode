@@ -2,9 +2,9 @@
 package handler
 
 import (
+	"github.com/lcclicheng/XFMcode/xfm_code/service/interface/api/internal/svc"
 	"net/http"
 
-	"api/internal/svc"
 
 	"github.com/zeromicro/go-zero/rest"
 )

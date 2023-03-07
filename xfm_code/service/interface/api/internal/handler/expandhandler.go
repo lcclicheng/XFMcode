@@ -1,11 +1,11 @@
 package handler
 
 import (
+	"github.com/lcclicheng/XFMcode/xfm_code/service/interface/api/internal/logic"
+	"github.com/lcclicheng/XFMcode/xfm_code/service/interface/api/internal/svc"
+	"github.com/lcclicheng/XFMcode/xfm_code/service/interface/api/internal/types"
 	"net/http"
 
-	"api/internal/logic"
-	"api/internal/svc"
-	"api/internal/types"
 	"github.com/zeromicro/go-zero/rest/httpx"
 )
 

@@ -2,10 +2,10 @@ package logic
 
 import (
 	"context"
-	"xfm_code/service/interface/rpc/transform/transformer"
+	"github.com/lcclicheng/XFMcode/xfm_code/service/interface/rpc/transform/transformer"
 
-	"api/internal/svc"
-	"api/internal/types"
+	"github.com/lcclicheng/XFMcode/xfm_code/service/interface/api/internal/svc"
+	"github.com/lcclicheng/XFMcode/xfm_code/service/interface/api/internal/types"
 
 	"github.com/zeromicro/go-zero/core/logx"
 )
@@ -24,7 +24,8 @@ func NewExpandLogic(ctx context.Context, svcCtx *svc.ServiceContext) *ExpandLogi
 	}
 }
 
-func (l *ExpandLogic) Expand(req *types.ExpandReq) (resp *types.ExpandResp, err error) {
+func (l *ExpandLogic) Expand(req types.ExpandReq) (types.ExpandResp, error) {
+	// 手动代码开始
 	resp, err := l.svcCtx.Transformer.Expand(l.ctx, &transformer.ExpandReq{
 		Shorten: req.Shorten,
 	})
@@ -35,6 +36,5 @@ func (l *ExpandLogic) Expand(req *types.ExpandReq) (resp *types.ExpandResp, err 
 	return types.ExpandResp{
 		Url: resp.Url,
 	}, nil
-
-	return
+	// 手动代码结束
 }

@@ -5,10 +5,9 @@ package server
 
 import (
 	"context"
-
-	"transform/internal/logic"
-	"transform/internal/svc"
-	"transform/pb"
+	"github.com/lcclicheng/XFMcode/xfm_code/service/interface/rpc/transform/internal/logic"
+	"github.com/lcclicheng/XFMcode/xfm_code/service/interface/rpc/transform/internal/svc"
+	"github.com/lcclicheng/XFMcode/xfm_code/service/interface/rpc/transform/pb"
 )
 
 type TransformerServer struct {

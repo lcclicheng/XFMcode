@@ -3,10 +3,9 @@ package main
 import (
 	"flag"
 	"fmt"
-
-	"api/internal/config"
-	"api/internal/handler"
-	"api/internal/svc"
+	"github.com/lcclicheng/XFMcode/xfm_code/service/interface/api/internal/config"
+	"github.com/lcclicheng/XFMcode/xfm_code/service/interface/api/internal/handler"
+	"github.com/lcclicheng/XFMcode/xfm_code/service/interface/api/internal/svc"
 
 	"github.com/zeromicro/go-zero/core/conf"
 	"github.com/zeromicro/go-zero/rest"

@@ -2,9 +2,9 @@ package logic
 
 import (
 	"context"
-
-	"api/internal/svc"
-	"api/internal/types"
+	"github.com/lcclicheng/XFMcode/xfm_code/service/interface/api/internal/svc"
+	"github.com/lcclicheng/XFMcode/xfm_code/service/interface/api/internal/types"
+	"github.com/lcclicheng/XFMcode/xfm_code/service/interface/rpc/transform/transformer"
 
 	"github.com/zeromicro/go-zero/core/logx"
 )
@@ -23,8 +23,17 @@ func NewShortenLogic(ctx context.Context, svcCtx *svc.ServiceContext) *ShortenLo
 	}
 }
 
-func (l *ShortenLogic) Shorten(req *types.ShortenReq) (resp *types.ShortenResp, err error) {
-	// todo: add your logic here and delete this line
+func (l *ShortenLogic) Shorten(req types.ShortenReq) (types.ShortenResp, error) {
+	// 手动代码开始
+	resp, err := l.svcCtx.Transformer.Shorten(l.ctx, &transformer.ShortenReq{
+		Url: req.Url,
+	})
+	if err != nil {
+		return types.ShortenResp{}, err
+	}
 
-	return
+	return types.ShortenResp{
+		Shorten: resp.Shorten,
+	}, nil
+	// 手动代码结束
 }
