@@ -4,7 +4,6 @@ import (
 	"context"
 	"github.com/lcclicheng/XFMcode/xfm_code/service/interface/rpc/transform/internal/svc"
 	"github.com/lcclicheng/XFMcode/xfm_code/service/interface/rpc/transform/pb"
-
 	"github.com/zeromicro/go-zero/core/logx"
 )
 
@@ -23,7 +22,14 @@ func NewExpandLogic(ctx context.Context, svcCtx *svc.ServiceContext) *ExpandLogi
 }
 
 func (l *ExpandLogic) Expand(in *pb.ExpandReq) (*pb.ExpandResp, error) {
-	// todo: add your logic here and delete this line
+	// 手动代码开始
+	res, err := l.svcCtx.Model.FindOne(l.ctx, in.Shorten)
+	if err != nil {
+		return nil, err
+	}
 
-	return &pb.ExpandResp{}, nil
+	return &pb.ExpandResp{
+		Url: res.Url,
+	}, nil
+	// 手动代码结束
 }

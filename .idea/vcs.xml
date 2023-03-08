@@ -2,6 +2,9 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/xfm_code/service/src/github.com/DATA-DOG/go-sqlmock" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/xfm_code/service/src/github.com/grpc-ecosystem/grpc-gateway" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/xfm_code/service/src/github.com/pelletier/go-toml" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/xfm_sdk/src/github.com/go-qrcode" vcs="Git" />
   </component>
 </project>
