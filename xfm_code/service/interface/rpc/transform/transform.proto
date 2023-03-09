@@ -20,7 +20,25 @@ message shortenResp {
   string shorten = 1;
 }
 
+message CodeStatusRequest{
+  string uid = 1;
+}
+message CodeStatusResponse{
+  string status = 2;
+}
+message RequestConsumptionRequest{
+  string uid = 1;
+}
+message RequestConsumptionResponse{
+  string url = 1;
+}
 service transformer {
+  //测试流程代码
   rpc expand(expandReq) returns(expandResp);
   rpc shorten(shortenReq) returns(shortenResp);
+
+  ////查询消费码状态
+  rpc QueryCodeStatus(CodeStatusRequest) returns (CodeStatusResponse);
+  //用户申请消费码返回给用户
+  rpc RequestConsumption(RequestConsumptionRequest) returns (RequestConsumptionResponse);
 }

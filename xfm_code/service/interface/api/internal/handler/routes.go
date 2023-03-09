@@ -2,9 +2,9 @@
 package handler
 
 import (
-	"github.com/lcclicheng/XFMcode/xfm_code/service/interface/api/internal/svc"
 	"net/http"
 
+	"github.com/lcclicheng/XFMcode/xfm_code/service/interface/api/internal/svc"
 
 	"github.com/zeromicro/go-zero/rest"
 )
@@ -21,6 +21,16 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 				Method:  http.MethodGet,
 				Path:    "/expand",
 				Handler: ExpandHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodPost,
+				Path:    "/QueryCodeStatus",
+				Handler: QueryCodeStatusHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodPost,
+				Path:    "/RequestConsumption",
+				Handler: RequestConsumptionHandler(serverCtx),
 			},
 		},
 	)

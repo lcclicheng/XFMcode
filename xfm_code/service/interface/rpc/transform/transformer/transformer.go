@@ -5,6 +5,7 @@ package transformer
 
 import (
 	"context"
+
 	"github.com/lcclicheng/XFMcode/xfm_code/service/interface/rpc/transform/pb"
 
 	"github.com/zeromicro/go-zero/zrpc"
@@ -12,14 +13,23 @@ import (
 )
 
 type (
-	ExpandReq   = pb.ExpandReq
-	ExpandResp  = pb.ExpandResp
-	ShortenReq  = pb.ShortenReq
-	ShortenResp = pb.ShortenResp
+	CodeStatusRequest          = pb.CodeStatusRequest
+	CodeStatusResponse         = pb.CodeStatusResponse
+	ExpandReq                  = pb.ExpandReq
+	ExpandResp                 = pb.ExpandResp
+	RequestConsumptionRequest  = pb.RequestConsumptionRequest
+	RequestConsumptionResponse = pb.RequestConsumptionResponse
+	ShortenReq                 = pb.ShortenReq
+	ShortenResp                = pb.ShortenResp
 
 	Transformer interface {
+		// 测试流程代码
 		Expand(ctx context.Context, in *ExpandReq, opts ...grpc.CallOption) (*ExpandResp, error)
 		Shorten(ctx context.Context, in *ShortenReq, opts ...grpc.CallOption) (*ShortenResp, error)
+		// 查询消费码状态
+		QueryCodeStatus(ctx context.Context, in *CodeStatusRequest, opts ...grpc.CallOption) (*CodeStatusResponse, error)
+		// 用户申请消费码返回给用户
+		RequestConsumption(ctx context.Context, in *RequestConsumptionRequest, opts ...grpc.CallOption) (*RequestConsumptionResponse, error)
 	}
 
 	defaultTransformer struct {
@@ -33,6 +43,7 @@ func NewTransformer(cli zrpc.Client) Transformer {
 	}
 }
 
+// 测试流程代码
 func (m *defaultTransformer) Expand(ctx context.Context, in *ExpandReq, opts ...grpc.CallOption) (*ExpandResp, error) {
 	client := pb.NewTransformerClient(m.cli.Conn())
 	return client.Expand(ctx, in, opts...)
@@ -41,4 +52,16 @@ func (m *defaultTransformer) Expand(ctx context.Context, in *ExpandReq, opts ...
 func (m *defaultTransformer) Shorten(ctx context.Context, in *ShortenReq, opts ...grpc.CallOption) (*ShortenResp, error) {
 	client := pb.NewTransformerClient(m.cli.Conn())
 	return client.Shorten(ctx, in, opts...)
+}
+
+// 查询消费码状态
+func (m *defaultTransformer) QueryCodeStatus(ctx context.Context, in *CodeStatusRequest, opts ...grpc.CallOption) (*CodeStatusResponse, error) {
+	client := pb.NewTransformerClient(m.cli.Conn())
+	return client.QueryCodeStatus(ctx, in, opts...)
+}
+
+// 用户申请消费码返回给用户
+func (m *defaultTransformer) RequestConsumption(ctx context.Context, in *RequestConsumptionRequest, opts ...grpc.CallOption) (*RequestConsumptionResponse, error) {
+	client := pb.NewTransformerClient(m.cli.Conn())
+	return client.RequestConsumption(ctx, in, opts...)
 }

@@ -16,3 +16,19 @@ type ShortenReq struct {
 type ShortenResp struct {
 	Shorten string `json:"shorten"`
 }
+
+type CodeStatusRequest struct {
+	Uid string `json:"uid"`
+}
+
+type CodeStatusResponse struct {
+	Status string `json:"status"`
+}
+
+type RequestConsumptionRequest struct {
+	Uid string `json:"uid"`
+}
+
+type RequestConsumptionResponse struct {
+	Url string `json:"url"`
+}

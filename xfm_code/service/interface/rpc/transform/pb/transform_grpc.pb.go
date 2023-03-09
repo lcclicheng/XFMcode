@@ -22,8 +22,13 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type TransformerClient interface {
+	//测试流程代码
 	Expand(ctx context.Context, in *ExpandReq, opts ...grpc.CallOption) (*ExpandResp, error)
 	Shorten(ctx context.Context, in *ShortenReq, opts ...grpc.CallOption) (*ShortenResp, error)
+	////查询消费码状态
+	QueryCodeStatus(ctx context.Context, in *CodeStatusRequest, opts ...grpc.CallOption) (*CodeStatusResponse, error)
+	//用户申请消费码返回给用户
+	RequestConsumption(ctx context.Context, in *RequestConsumptionRequest, opts ...grpc.CallOption) (*RequestConsumptionResponse, error)
 }
 
 type transformerClient struct {
@@ -52,12 +57,35 @@ func (c *transformerClient) Shorten(ctx context.Context, in *ShortenReq, opts ..
 	return out, nil
 }
 
+func (c *transformerClient) QueryCodeStatus(ctx context.Context, in *CodeStatusRequest, opts ...grpc.CallOption) (*CodeStatusResponse, error) {
+	out := new(CodeStatusResponse)
+	err := c.cc.Invoke(ctx, "/transform.transformer/QueryCodeStatus", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *transformerClient) RequestConsumption(ctx context.Context, in *RequestConsumptionRequest, opts ...grpc.CallOption) (*RequestConsumptionResponse, error) {
+	out := new(RequestConsumptionResponse)
+	err := c.cc.Invoke(ctx, "/transform.transformer/RequestConsumption", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // TransformerServer is the server API for Transformer service.
 // All implementations must embed UnimplementedTransformerServer
 // for forward compatibility
 type TransformerServer interface {
+	//测试流程代码
 	Expand(context.Context, *ExpandReq) (*ExpandResp, error)
 	Shorten(context.Context, *ShortenReq) (*ShortenResp, error)
+	////查询消费码状态
+	QueryCodeStatus(context.Context, *CodeStatusRequest) (*CodeStatusResponse, error)
+	//用户申请消费码返回给用户
+	RequestConsumption(context.Context, *RequestConsumptionRequest) (*RequestConsumptionResponse, error)
 	mustEmbedUnimplementedTransformerServer()
 }
 
@@ -70,6 +98,12 @@ func (UnimplementedTransformerServer) Expand(context.Context, *ExpandReq) (*Expa
 }
 func (UnimplementedTransformerServer) Shorten(context.Context, *ShortenReq) (*ShortenResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Shorten not implemented")
+}
+func (UnimplementedTransformerServer) QueryCodeStatus(context.Context, *CodeStatusRequest) (*CodeStatusResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method QueryCodeStatus not implemented")
+}
+func (UnimplementedTransformerServer) RequestConsumption(context.Context, *RequestConsumptionRequest) (*RequestConsumptionResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RequestConsumption not implemented")
 }
 func (UnimplementedTransformerServer) mustEmbedUnimplementedTransformerServer() {}
 
@@ -120,6 +154,42 @@ func _Transformer_Shorten_Handler(srv interface{}, ctx context.Context, dec func
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Transformer_QueryCodeStatus_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CodeStatusRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TransformerServer).QueryCodeStatus(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/transform.transformer/QueryCodeStatus",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TransformerServer).QueryCodeStatus(ctx, req.(*CodeStatusRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Transformer_RequestConsumption_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RequestConsumptionRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TransformerServer).RequestConsumption(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/transform.transformer/RequestConsumption",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TransformerServer).RequestConsumption(ctx, req.(*RequestConsumptionRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Transformer_ServiceDesc is the grpc.ServiceDesc for Transformer service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -134,6 +204,14 @@ var Transformer_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "shorten",
 			Handler:    _Transformer_Shorten_Handler,
+		},
+		{
+			MethodName: "QueryCodeStatus",
+			Handler:    _Transformer_QueryCodeStatus_Handler,
+		},
+		{
+			MethodName: "RequestConsumption",
+			Handler:    _Transformer_RequestConsumption_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

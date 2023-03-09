@@ -5,6 +5,7 @@ package server
 
 import (
 	"context"
+
 	"github.com/lcclicheng/XFMcode/xfm_code/service/interface/rpc/transform/internal/logic"
 	"github.com/lcclicheng/XFMcode/xfm_code/service/interface/rpc/transform/internal/svc"
 	"github.com/lcclicheng/XFMcode/xfm_code/service/interface/rpc/transform/pb"
@@ -21,6 +22,7 @@ func NewTransformerServer(svcCtx *svc.ServiceContext) *TransformerServer {
 	}
 }
 
+// 测试流程代码
 func (s *TransformerServer) Expand(ctx context.Context, in *pb.ExpandReq) (*pb.ExpandResp, error) {
 	l := logic.NewExpandLogic(ctx, s.svcCtx)
 	return l.Expand(in)
@@ -29,4 +31,16 @@ func (s *TransformerServer) Expand(ctx context.Context, in *pb.ExpandReq) (*pb.E
 func (s *TransformerServer) Shorten(ctx context.Context, in *pb.ShortenReq) (*pb.ShortenResp, error) {
 	l := logic.NewShortenLogic(ctx, s.svcCtx)
 	return l.Shorten(in)
+}
+
+// 查询消费码状态
+func (s *TransformerServer) QueryCodeStatus(ctx context.Context, in *pb.CodeStatusRequest) (*pb.CodeStatusResponse, error) {
+	l := logic.NewQueryCodeStatusLogic(ctx, s.svcCtx)
+	return l.QueryCodeStatus(in)
+}
+
+// 用户申请消费码返回给用户
+func (s *TransformerServer) RequestConsumption(ctx context.Context, in *pb.RequestConsumptionRequest) (*pb.RequestConsumptionResponse, error) {
+	l := logic.NewRequestConsumptionLogic(ctx, s.svcCtx)
+	return l.RequestConsumption(in)
 }

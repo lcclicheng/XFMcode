@@ -17,8 +17,26 @@ type (
 		Shorten string `json:"shorten"`
 	}
 )
+type (
+	CodeStatusRequest {
+		Uid string `json:"uid"`
+	}
+	CodeStatusResponse {
+		Status string `json:"status"`
+	}
+)
+
+type (
+	RequestConsumptionRequest {
+		Uid string `json:"uid"`
+	}
+	RequestConsumptionResponse {
+		Url string `json:"url"`
+	}
+)
 
 service shorturl-api {
+	//测试流程代码
 	@server(
 		handler: ShortenHandler
 	)
@@ -28,4 +46,16 @@ service shorturl-api {
 		handler: ExpandHandler
 	)
 	get /expand (expandReq) returns (expandResp)
+
+
+	//查询消费码状态
+	@server(
+		handler: QueryCodeStatusHandler
+	)
+	post /QueryCodeStatus (CodeStatusRequest) returns (CodeStatusResponse)
+	//用户申请消费码返回给用户
+	@server(
+		handler: RequestConsumptionHandler
+	)
+	post /RequestConsumption (RequestConsumptionRequest) returns (RequestConsumptionResponse)
 }
