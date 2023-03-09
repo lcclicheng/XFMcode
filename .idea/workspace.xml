@@ -5,15 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="08ef5c03-3bf3-46ca-b214-0e7c7fb389ac" name="Changes" comment="Changes">
-      <change afterPath="$PROJECT_DIR$/xfm_code/service/interface/rpc/transform/go.sum" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/xfm_code/service/pkg/mod/github.com/skip2/go-qrcode@v0.0.0-20200617195104-da1b6568686e/go.mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/xfm_code/service/interface/api/internal/logic/querycodestatuslogic.go" beforeDir="false" afterPath="$PROJECT_DIR$/xfm_code/service/interface/api/internal/logic/querycodestatuslogic.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/xfm_code/service/interface/api/internal/logic/requestconsumptionlogic.go" beforeDir="false" afterPath="$PROJECT_DIR$/xfm_code/service/interface/api/internal/logic/requestconsumptionlogic.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/xfm_code/service/interface/rpc/transform/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/xfm_code/service/interface/rpc/transform/go.mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/xfm_code/service/interface/rpc/transform/internal/logic/querycodestatuslogic.go" beforeDir="false" afterPath="$PROJECT_DIR$/xfm_code/service/interface/rpc/transform/internal/logic/querycodestatuslogic.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/xfm_code/service/interface/rpc/transform/internal/logic/requestconsumptionlogic.go" beforeDir="false" afterPath="$PROJECT_DIR$/xfm_code/service/interface/rpc/transform/internal/logic/requestconsumptionlogic.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/xfm_code/service/pkg/sumdb/sum.golang.org/latest" beforeDir="false" afterPath="$PROJECT_DIR$/xfm_code/service/pkg/sumdb/sum.golang.org/latest" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/xfm_sdk/src/github.com/go-qrcode" beforeDir="false" afterPath="$PROJECT_DIR$/xfm_sdk/src/github.com/go-qrcode" afterDir="false" />
     </list>
     <list id="cdc5ae1f-d9b2-406f-accb-09d26b5f61df" name="v_lfengyuli 进行的变更" comment="">
