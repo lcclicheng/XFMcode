@@ -2,6 +2,7 @@ package logic
 
 import (
 	"context"
+	"github.com/lcclicheng/XFMcode/xfm_code/service/interface/rpc/transform/transformer"
 
 	"github.com/lcclicheng/XFMcode/xfm_code/service/interface/api/internal/svc"
 	"github.com/lcclicheng/XFMcode/xfm_code/service/interface/api/internal/types"
@@ -23,8 +24,16 @@ func NewRequestConsumptionLogic(ctx context.Context, svcCtx *svc.ServiceContext)
 	}
 }
 
-func (l *RequestConsumptionLogic) RequestConsumption(req *types.RequestConsumptionRequest) (resp *types.RequestConsumptionResponse, err error) {
-	// todo: add your logic here and delete this line
+func (l *RequestConsumptionLogic) RequestConsumption(req *types.RequestConsumptionRequest) (*types.RequestConsumptionResponse, error) {
+	resp, err := l.svcCtx.Transformer.RequestConsumption(l.ctx, &transformer.RequestConsumptionRequest{
+		Uid: req.Uid,
+	})
+	if err != nil {
+		return &types.RequestConsumptionResponse{}, err
+	}
 
-	return
+	return &types.RequestConsumptionResponse{
+		Url: resp.Url,
+	}, nil
+
 }
