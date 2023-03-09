@@ -3,10 +3,10 @@ package handler
 import (
 	"net/http"
 
-	"github.com/lcclicheng/XFMcode/xfm_code/service/interface/api/internal/logic"
-	"github.com/lcclicheng/XFMcode/xfm_code/service/interface/api/internal/svc"
-	"github.com/lcclicheng/XFMcode/xfm_code/service/interface/api/internal/types"
 	"github.com/zeromicro/go-zero/rest/httpx"
+	"interface/api/internal/logic"
+	"interface/api/internal/svc"
+	"interface/api/internal/types"
 )
 
 func RequestConsumptionHandler(svcCtx *svc.ServiceContext) http.HandlerFunc {

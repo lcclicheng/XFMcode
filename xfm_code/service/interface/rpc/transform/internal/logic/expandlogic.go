@@ -2,9 +2,9 @@ package logic
 
 import (
 	"context"
-	"github.com/lcclicheng/XFMcode/xfm_code/service/interface/rpc/transform/internal/svc"
-	"github.com/lcclicheng/XFMcode/xfm_code/service/interface/rpc/transform/pb"
 	"github.com/zeromicro/go-zero/core/logx"
+	"interface/rpc/transform/internal/svc"
+	"interface/rpc/transform/pb"
 )
 
 type ExpandLogic struct {

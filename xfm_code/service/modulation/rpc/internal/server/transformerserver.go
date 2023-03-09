@@ -6,9 +6,9 @@ package server
 import (
 	"context"
 
-	"rpc/internal/logic"
-	"rpc/internal/svc"
-	"rpc/pb"
+	"modulation/rpc/internal/logic"
+	"modulation/rpc/internal/svc"
+	"modulation/rpc/pb"
 )
 
 type TransformerServer struct {

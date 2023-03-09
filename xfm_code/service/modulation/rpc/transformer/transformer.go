@@ -6,7 +6,7 @@ package transformer
 import (
 	"context"
 
-	"rpc/pb"
+	"modulation/rpc/pb"
 
 	"github.com/zeromicro/go-zero/zrpc"
 	"google.golang.org/grpc"

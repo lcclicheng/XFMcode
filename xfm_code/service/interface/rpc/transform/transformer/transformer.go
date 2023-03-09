@@ -6,7 +6,7 @@ package transformer
 import (
 	"context"
 
-	"github.com/lcclicheng/XFMcode/xfm_code/service/interface/rpc/transform/pb"
+	"interface/rpc/transform/pb"
 
 	"github.com/zeromicro/go-zero/zrpc"
 	"google.golang.org/grpc"

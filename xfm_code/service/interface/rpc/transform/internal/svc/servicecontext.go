@@ -1,9 +1,9 @@
 package svc
 
 import (
-	"github.com/lcclicheng/XFMcode/xfm_code/service/interface/rpc/transform/internal/config"
-	"github.com/lcclicheng/XFMcode/xfm_code/service/interface/rpc/transform/model"
 	"github.com/zeromicro/go-zero/core/stores/sqlx"
+	"interface/rpc/transform/internal/config"
+	"interface/rpc/transform/model"
 )
 
 type ServiceContext struct {

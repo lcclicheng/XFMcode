@@ -1,9 +1,9 @@
 package handler
 
 import (
-	"github.com/lcclicheng/XFMcode/xfm_code/service/interface/api/internal/logic"
-	"github.com/lcclicheng/XFMcode/xfm_code/service/interface/api/internal/svc"
-	"github.com/lcclicheng/XFMcode/xfm_code/service/interface/api/internal/types"
+	"interface/api/internal/logic"
+	"interface/api/internal/svc"
+	"interface/api/internal/types"
 	"net/http"
 
 	"github.com/zeromicro/go-zero/rest/httpx"
