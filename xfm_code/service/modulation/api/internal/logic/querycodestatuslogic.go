@@ -2,6 +2,7 @@ package logic
 
 import (
 	"context"
+	"modulation/rpc/modulation"
 
 	"modulation/api/internal/svc"
 	"modulation/api/internal/types"
@@ -23,8 +24,14 @@ func NewQueryCodeStatusLogic(ctx context.Context, svcCtx *svc.ServiceContext) *Q
 	}
 }
 
-func (l *QueryCodeStatusLogic) QueryCodeStatus(req *types.CodeStatusRequest) (resp *types.CodeStatusResponse, err error) {
-	// todo: add your logic here and delete this line
-
-	return
+func (l *QueryCodeStatusLogic) QueryCodeStatus(req *types.CodeStatusRequest) (*types.CodeStatusResponse, error) {
+	resp, err := l.svcCtx.Modulation.QueryCodeStatus(l.ctx, &modulation.CodeStatusRequest{
+		Uid: req.Uid,
+	})
+	if err != nil {
+		return &types.CodeStatusResponse{}, err
+	}
+	return &types.CodeStatusResponse{
+		Status: resp.Status,
+	}, nil
 }

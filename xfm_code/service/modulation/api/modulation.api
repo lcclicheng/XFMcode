@@ -1,24 +1,56 @@
 type (
-	SearchReq {
-		// 图书名称
-		Name string `form:"name"`
+	CodeStatusRequest {
+		Uid string `json:"uid"`
 	}
-
-	SearchReply {
-		Name  string `json:"name"`
-		Count int    `json:"count"`
+	CodeStatusResponse {
+		Status string `json:"status"`
 	}
 )
 
-@server(
-	jwt: Auth
+type (
+	RequestConsumptionRequest {
+		Uid string `json:"uid"`
+	}
+	RequestConsumptionResponse {
+		Url string `json:"url"`
+	}
 )
-service search-api {
-	@handler search
-	get /search/do (SearchReq) returns (SearchReply)
-}
 
-service search-api {
-	@handler ping
-	get /search/ping
+type (
+	OrderDetailsReq {
+		OutRequestNo  string `form:"outRequestNo"`
+		PayOutTradeNo string `form:"payOutTradeNo"`
+	}
+
+	OrderDetailsResp {
+		PayStatus      string `json:"payStatus"`
+		PayDate        string `json:"payDate"`
+		PayTime        string `json:"payTime"`
+		TotalFee       string `json:"totalFee"`
+		PayCouponFee   string `json:"payCouponFee"`
+		PayOutTradeNo  string `json:"payOutTradeNo"`
+		PayErrDesc     string `json:"payErrDesc"`
+		Uid            string `json:"uid"`
+		PayType        string `json:"payType"`
+		PayTypeTradeNo string `json:"payTypeTradeNo"`
+	}
+)
+
+service modulation-api {
+	//查询消费码状态
+	@server(
+		handler: QueryCodeStatusHandler
+	)
+	post /QueryCodeStatus (CodeStatusRequest) returns (CodeStatusResponse)
+	//用户申请消费码返回给用户
+	@server(
+		handler: RequestConsumptionHandler
+	)
+	post /RequestConsumption (RequestConsumptionRequest) returns (RequestConsumptionResponse)
+	// 二维码订单查询
+	@server(
+		handler : OrderDetailsHandler
+	)
+	post /OrderDetailsLogic (OrderDetailsReq) returns (OrderDetailsResp)
+	
 }

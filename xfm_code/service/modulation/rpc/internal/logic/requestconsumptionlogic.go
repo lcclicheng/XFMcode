@@ -2,9 +2,12 @@ package logic
 
 import (
 	"context"
+	"github.com/skip2/go-qrcode"
+	"log"
+	"net/http"
 
 	"modulation/rpc/internal/svc"
-	"modulation/rpc/pb"
+	"modulation/rpc/modulation"
 
 	"github.com/zeromicro/go-zero/core/logx"
 )
@@ -24,8 +27,15 @@ func NewRequestConsumptionLogic(ctx context.Context, svcCtx *svc.ServiceContext)
 }
 
 // 用户申请消费码返回给用户
-func (l *RequestConsumptionLogic) RequestConsumption(in *pb.RequestConsumptionRequest) (*pb.RequestConsumptionResponse, error) {
-	// todo: add your logic here and delete this line
-
-	return &pb.RequestConsumptionResponse{}, nil
+func (l *RequestConsumptionLogic) RequestConsumption(in *modulation.RequestConsumptionRequest) (*modulation.RequestConsumptionResponse, error) {
+	http.HandleFunc("/code", func(w http.ResponseWriter, r *http.Request) {
+		f, err := qrcode.Encode("https://www.baidu.com/", qrcode.Highest, 300)
+		if err != nil {
+			log.Println(err.Error())
+			return
+		}
+		w.Write(f)
+	})
+	_ = http.ListenAndServe("127.0.0.1:9090", nil)
+	return &modulation.RequestConsumptionResponse{}, nil
 }

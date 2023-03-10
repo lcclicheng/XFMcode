@@ -2,6 +2,7 @@ package logic
 
 import (
 	"context"
+	"modulation/rpc/modulation"
 
 	"modulation/api/internal/svc"
 	"modulation/api/internal/types"
@@ -23,8 +24,14 @@ func NewRequestConsumptionLogic(ctx context.Context, svcCtx *svc.ServiceContext)
 	}
 }
 
-func (l *RequestConsumptionLogic) RequestConsumption(req *types.RequestConsumptionRequest) (resp *types.RequestConsumptionResponse, err error) {
-	// todo: add your logic here and delete this line
-
-	return
+func (l *RequestConsumptionLogic) RequestConsumption(req *types.RequestConsumptionRequest) (*types.RequestConsumptionResponse, error) {
+	resp, err := l.svcCtx.Modulation.RequestConsumption(l.ctx, &modulation.RequestConsumptionRequest{
+		Uid: req.Uid,
+	})
+	if err != nil {
+		return &types.RequestConsumptionResponse{}, err
+	}
+	return &types.RequestConsumptionResponse{
+		Url: resp.Url,
+	}, nil
 }

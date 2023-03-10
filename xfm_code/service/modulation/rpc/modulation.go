@@ -7,7 +7,7 @@ import (
 	"modulation/rpc/internal/config"
 	"modulation/rpc/internal/server"
 	"modulation/rpc/internal/svc"
-	"modulation/rpc/pb"
+	"modulation/rpc/modulation"
 
 	"github.com/zeromicro/go-zero/core/conf"
 	"github.com/zeromicro/go-zero/core/service"
@@ -26,7 +26,7 @@ func main() {
 	ctx := svc.NewServiceContext(c)
 
 	s := zrpc.MustNewServer(c.RpcServerConf, func(grpcServer *grpc.Server) {
-		pb.RegisterTransformerServer(grpcServer, server.NewTransformerServer(ctx))
+		modulation.RegisterModulationRpcServer(grpcServer, server.NewModulationRpcServer(ctx))
 
 		if c.Mode == service.DevMode || c.Mode == service.TestMode {
 			reflection.Register(grpcServer)

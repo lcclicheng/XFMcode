@@ -16,3 +16,21 @@ type RequestConsumptionRequest struct {
 type RequestConsumptionResponse struct {
 	Url string `json:"url"`
 }
+
+type OrderDetailsReq struct {
+	OutRequestNo  string `form:"outRequestNo"`
+	PayOutTradeNo string `form:"payOutTradeNo"`
+}
+
+type OrderDetailsResp struct {
+	PayStatus      string `json:"payStatus"`
+	PayDate        string `json:"payDate"`
+	PayTime        string `json:"payTime"`
+	TotalFee       string `json:"totalFee"`
+	PayCouponFee   string `json:"payCouponFee"`
+	PayOutTradeNo  string `json:"payOutTradeNo"`
+	PayErrDesc     string `json:"payErrDesc"`
+	Uid            string `json:"uid"`
+	PayType        string `json:"payType"`
+	PayTypeTradeNo string `json:"payTypeTradeNo"`
+}

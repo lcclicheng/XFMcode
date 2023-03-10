@@ -22,6 +22,11 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 				Path:    "/RequestConsumption",
 				Handler: RequestConsumptionHandler(serverCtx),
 			},
+			{
+				Method:  http.MethodPost,
+				Path:    "/OrderDetailsLogic",
+				Handler: OrderDetailsHandler(serverCtx),
+			},
 		},
 	)
 }

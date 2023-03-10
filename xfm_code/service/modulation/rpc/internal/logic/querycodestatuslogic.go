@@ -4,7 +4,7 @@ import (
 	"context"
 
 	"modulation/rpc/internal/svc"
-	"modulation/rpc/pb"
+	"modulation/rpc/modulation"
 
 	"github.com/zeromicro/go-zero/core/logx"
 )
@@ -24,8 +24,7 @@ func NewQueryCodeStatusLogic(ctx context.Context, svcCtx *svc.ServiceContext) *Q
 }
 
 // 查询消费码状态
-func (l *QueryCodeStatusLogic) QueryCodeStatus(in *pb.CodeStatusRequest) (*pb.CodeStatusResponse, error) {
-	// todo: add your logic here and delete this line
+func (l *QueryCodeStatusLogic) QueryCodeStatus(in *modulation.CodeStatusRequest) (*modulation.CodeStatusResponse, error) {
 
-	return &pb.CodeStatusResponse{}, nil
+	return &modulation.CodeStatusResponse{Status: "已领取个人消费码"}, nil
 }

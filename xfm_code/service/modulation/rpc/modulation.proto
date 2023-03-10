@@ -1,3 +1,41 @@
 syntax = "proto3";
 
-package template;
+package modulation;
+option go_package="./modulation";
+
+message CodeStatusRequest{
+  string uid = 1;
+}
+message CodeStatusResponse{
+  string status = 2;
+}
+message RequestConsumptionRequest{
+  string uid = 1;
+}
+message RequestConsumptionResponse{
+  string url = 1;
+}
+message OrderDetailsReq {
+  string outRequestNo=1;
+  string payOutTradeNo=2;
+}
+message OrderDetailsResp {
+  string payStatus=1;
+  string payDate=2;
+  string payTime=3;
+  string totalFee=4;
+  string payCouponFee=5;
+  string payOutTradeNo=6;
+  string payErrDesc=7;
+  string uid=8;
+  string payType=9;
+  string payTypeTradeNo=10;
+}
+service modulationRpc {
+  //查询消费码状态
+  rpc QueryCodeStatus(CodeStatusRequest) returns (CodeStatusResponse);
+  //用户申请消费码返回给用户
+  rpc RequestConsumption(RequestConsumptionRequest) returns (RequestConsumptionResponse);
+  // 二维码订单查询
+  rpc OrderDetailsLogic(OrderDetailsReq) returns (OrderDetailsResp);
+}
