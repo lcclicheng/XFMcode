@@ -2,9 +2,10 @@ package logic
 
 import (
 	"context"
-	"fmt"
 	"modulation/rpc/internal/svc"
 	"modulation/rpc/modulation"
+	"runtime/debug"
+	"tools/derror"
 	"tools/dhttp"
 
 	"github.com/zeromicro/go-zero/core/logx"
@@ -25,10 +26,12 @@ func NewOrderDetailsLogicLogic(ctx context.Context, svcCtx *svc.ServiceContext) 
 }
 
 // OrderDetailsLogic 二维码订单查询
-func (l *OrderDetailsLogicLogic) OrderDetailsLogic(in *modulation.OrderDetailsReq) (*modulation.OrderDetailsResp, error) {
-	defer func() { // 必须要先声明defer，否则不能捕获到panic异常
-		if err := recover(); err != nil {
-			fmt.Println(err) // 这里的err其实就是panic传入的内容
+func (l *OrderDetailsLogicLogic) OrderDetailsLogic(in *modulation.OrderDetailsReq) (result *modulation.OrderDetailsResp, err error) {
+	defer func() {
+		if r := recover(); r != nil {
+			_, err = derror.ResponsePanicErr(nil, r.(string))
+			logx.Error(err, "OrderDetailsLogic_recover()", "in", in)
+			debug.PrintStack()
 		}
 	}()
 	prams := make(map[string]string, 2)
@@ -44,19 +47,21 @@ func (l *OrderDetailsLogicLogic) OrderDetailsLogic(in *modulation.OrderDetailsRe
 		delete(prams, prams["PayOutTradeNo"])
 	}
 
-	err := dhttp.ParamsCheck(prams)
+	err = dhttp.ParamsCheck(prams)
 	if err != nil {
-		fmt.Printf("Regular check failed err:%s", err)
-		return nil, err
+		obj, err := derror.ResponseErr(nil, err)
+		result = InterfaceToStruct(obj)
+		return result, err
 	}
 
 	rel, err := l.svcCtx.Model.FindOne(l.ctx, par)
 	if err != nil {
-		fmt.Printf("Query DB Failed err:%s", err)
-		return nil, err
+		logx.Error(err, "redis查询错误", "par", par)
+		obj, err := derror.ResponseDBErr(nil, "DB failed to query")
+		result = InterfaceToStruct(obj)
+		return result, err
 	}
-
-	return &modulation.OrderDetailsResp{
+	result = &modulation.OrderDetailsResp{
 		PayStatus:      rel.PayStatus,
 		PayDate:        rel.PayDate,
 		PayTime:        rel.PayTime,
@@ -67,5 +72,14 @@ func (l *OrderDetailsLogicLogic) OrderDetailsLogic(in *modulation.OrderDetailsRe
 		Uid:            rel.Uid,
 		PayType:        rel.PayType,
 		PayTypeTradeNo: rel.PayTypeTradeNo,
-	}, nil
+	}
+	obj, err := derror.ResponseSuccess(result)
+	result = InterfaceToStruct(obj)
+	return result, err
+}
+
+// InterfaceToStruct interface转任意类型，每个logic.go中返回类型`*modulation.OrderDetailsResp`记得替换成logic函数的返回类型
+func InterfaceToStruct(object interface{}) *modulation.OrderDetailsResp {
+	obj := object.(*modulation.OrderDetailsResp)
+	return obj
 }
