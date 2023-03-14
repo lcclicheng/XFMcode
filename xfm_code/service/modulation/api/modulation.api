@@ -12,7 +12,8 @@ type (
 		Uid string `json:"uid"`
 	}
 	RequestConsumptionResponse {
-		Url string `json:"url"`
+		BarCode         string `json:"barCode"`
+		DimensionalCode string `json:"dimensionalCode"`
 	}
 )
 
@@ -23,16 +24,19 @@ type (
 	}
 
 	OrderDetailsResp {
-		PayStatus      string `json:"payStatus"`
-		PayDate        string `json:"payDate"`
-		PayTime        string `json:"payTime"`
-		TotalFee       string `json:"totalFee"`
-		PayCouponFee   string `json:"payCouponFee"`
-		PayOutTradeNo  string `json:"payOutTradeNo"`
-		PayErrDesc     string `json:"payErrDesc"`
-		Uid            string `json:"uid"`
-		PayType        string `json:"payType"`
-		PayTypeTradeNo string `json:"payTypeTradeNo"`
+		PayStatus       string `json:"payStatus"`
+		PayDate         string `json:"payDate"`
+		PayTime         string `json:"payTime"`
+		TotalFee        string `json:"totalFee"`
+		PayCouponFee    string `json:"payCouponFee"`
+		PayOutTradeNo   string `json:"payOutTradeNo"`
+		PayErrDesc      string `json:"payErrDesc"`
+		Uid             string `json:"uid"`
+		PayType         string `json:"payType"`
+		PayTypeTradeNo  string `json:"payTypeTradeNo"`
+		OutRequestNo    string `json:"outRequestNo"`
+		DimensionalCode string `json:"dimensionalCode"`
+		BarCode         string `json:"barCode"`
 	}
 )
 

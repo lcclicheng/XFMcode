@@ -2,13 +2,12 @@ package logic
 
 import (
 	"context"
+	"github.com/zeromicro/go-zero/core/logx"
 	"modulation/rpc/internal/svc"
 	"modulation/rpc/modulation"
 	"runtime/debug"
 	"tools/derror"
 	"tools/dhttp"
-
-	"github.com/zeromicro/go-zero/core/logx"
 )
 
 type OrderDetailsLogicLogic struct {
@@ -61,17 +60,21 @@ func (l *OrderDetailsLogicLogic) OrderDetailsLogic(in *modulation.OrderDetailsRe
 		result = InterfaceToStruct(obj)
 		return result, err
 	}
+	//time := utils.NullTime{}
 	result = &modulation.OrderDetailsResp{
-		PayStatus:      rel.PayStatus,
-		PayDate:        rel.PayDate,
-		PayTime:        rel.PayTime,
-		TotalFee:       rel.TotalFee,
-		PayCouponFee:   rel.PayCouponFee,
-		PayOutTradeNo:  rel.PayOutTradeNo,
-		PayErrDesc:     rel.PayErrDesc,
-		Uid:            rel.Uid,
-		PayType:        rel.PayType,
-		PayTypeTradeNo: rel.PayTypeTradeNo,
+		PayStatus: rel.PayStatus,
+		//PayDate:        time.UnmarshalJSON(rel.PayDate),
+		//PayTime:        rel.PayTime,
+		TotalFee:        rel.TotalFee,
+		PayCouponFee:    rel.PayCouponFee,
+		PayOutTradeNo:   rel.PayOutTradeNo,
+		PayErrDesc:      rel.PayErrDesc,
+		Uid:             rel.Uid,
+		PayType:         rel.PayType,
+		PayTypeTradeNo:  rel.PayTypeTradeNo,
+		OutRequestNo:    rel.OutRequestNo,
+		DimensionalCode: rel.DimensionalCode,
+		BarCode:         rel.BarCode,
 	}
 	obj, err := derror.ResponseSuccess(result)
 	result = InterfaceToStruct(obj)

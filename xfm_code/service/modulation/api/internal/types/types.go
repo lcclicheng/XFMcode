@@ -14,7 +14,8 @@ type RequestConsumptionRequest struct {
 }
 
 type RequestConsumptionResponse struct {
-	Url string `json:"url"`
+	BarCode         string `json:"barCode"`
+	DimensionalCode string `json:"dimensionalCode"`
 }
 
 type OrderDetailsReq struct {
@@ -23,14 +24,17 @@ type OrderDetailsReq struct {
 }
 
 type OrderDetailsResp struct {
-	PayStatus      string `json:"payStatus"`
-	PayDate        string `json:"payDate"`
-	PayTime        string `json:"payTime"`
-	TotalFee       string `json:"totalFee"`
-	PayCouponFee   string `json:"payCouponFee"`
-	PayOutTradeNo  string `json:"payOutTradeNo"`
-	PayErrDesc     string `json:"payErrDesc"`
-	Uid            string `json:"uid"`
-	PayType        string `json:"payType"`
-	PayTypeTradeNo string `json:"payTypeTradeNo"`
+	PayStatus       string `json:"payStatus"`
+	PayDate         string `json:"payDate"`
+	PayTime         string `json:"payTime"`
+	TotalFee        string `json:"totalFee"`
+	PayCouponFee    string `json:"payCouponFee"`
+	PayOutTradeNo   string `json:"payOutTradeNo"`
+	PayErrDesc      string `json:"payErrDesc"`
+	Uid             string `json:"uid"`
+	PayType         string `json:"payType"`
+	PayTypeTradeNo  string `json:"payTypeTradeNo"`
+	OutRequestNo    string `json:"outRequestNo"`
+	DimensionalCode string `json:"dimensionalCode"`
+	BarCode         string `json:"barCode"`
 }

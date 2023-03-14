@@ -13,7 +13,8 @@ message RequestConsumptionRequest{
   string uid = 1;
 }
 message RequestConsumptionResponse{
-  string url = 1;
+  string dimensionalCode = 1;
+  string barCode=2;
 }
 message OrderDetailsReq {
   string outRequestNo=1;
@@ -30,6 +31,9 @@ message OrderDetailsResp {
   string uid=8;
   string payType=9;
   string payTypeTradeNo=10;
+  string outRequestNo=13;
+  string dimensionalCode = 11;
+  string barCode=12;
 }
 service modulationRpc {
   //查询消费码状态

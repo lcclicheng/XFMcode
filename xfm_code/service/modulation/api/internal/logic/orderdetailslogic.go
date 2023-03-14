@@ -33,15 +33,18 @@ func (l *OrderDetailsLogic) OrderDetails(req *types.OrderDetailsReq) (*types.Ord
 		return &types.OrderDetailsResp{}, err
 	}
 	return &types.OrderDetailsResp{
-		PayStatus:      resp.PayStatus,
-		PayDate:        resp.PayDate,
-		PayTime:        resp.PayTime,
-		TotalFee:       resp.TotalFee,
-		PayCouponFee:   resp.PayCouponFee,
-		PayOutTradeNo:  resp.PayOutTradeNo,
-		PayErrDesc:     resp.PayErrDesc,
-		Uid:            resp.Uid,
-		PayType:        resp.PayType,
-		PayTypeTradeNo: resp.PayTypeTradeNo,
+		PayStatus:       resp.PayStatus,
+		PayDate:         resp.PayDate,
+		PayTime:         resp.PayTime,
+		TotalFee:        resp.TotalFee,
+		PayCouponFee:    resp.PayCouponFee,
+		PayOutTradeNo:   resp.PayOutTradeNo,
+		PayErrDesc:      resp.PayErrDesc,
+		Uid:             resp.Uid,
+		PayType:         resp.PayType,
+		PayTypeTradeNo:  resp.PayTypeTradeNo,
+		OutRequestNo:    resp.OutRequestNo,
+		DimensionalCode: resp.DimensionalCode,
+		BarCode:         resp.BarCode,
 	}, nil
 }

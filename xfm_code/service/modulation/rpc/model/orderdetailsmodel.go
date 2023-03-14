@@ -20,8 +20,8 @@ type (
 )
 
 // NewOrderDetailsModel returns a model for the database table.
-func NewOrderDetailsModel(conn sqlx.SqlConn, c cache.CacheConf, opts ...cache.Option) OrderDetailsModel {
+func NewOrderDetailsModel(conn sqlx.SqlConn, c cache.CacheConf) OrderDetailsModel {
 	return &customOrderDetailsModel{
-		defaultOrderDetailsModel: newOrderDetailsModel(conn, c, opts...),
+		defaultOrderDetailsModel: newOrderDetailsModel(conn, c),
 	}
 }

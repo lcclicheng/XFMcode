@@ -38,23 +38,26 @@ type (
 	}
 
 	OrderDetails struct {
-		PayStatus      string `db:"PayStatus"`
-		PayDate        string `db:"PayDate"`
-		PayTime        string `db:"PayTime"`
-		TotalFee       string `db:"TotalFee"`
-		PayCouponFee   string `db:"PayCouponFee"`
-		PayOutTradeNo  string `db:"PayOutTradeNo"`
-		PayErrDesc     string `db:"PayErrDesc"`
-		Uid            string `db:"Uid"`
-		PayType        string `db:"PayType"`
-		PayTypeTradeNo string `db:"PayTypeTradeNo"`
+		PayStatus       string       `db:"PayStatus"`
+		PayDate         sql.NullTime `db:"PayDate"`
+		PayTime         sql.NullTime `db:"PayTime"`
+		TotalFee        string       `db:"TotalFee"`
+		PayCouponFee    string       `db:"PayCouponFee"`
+		PayOutTradeNo   string       `db:"PayOutTradeNo"`
+		PayErrDesc      string       `db:"PayErrDesc"`
+		Uid             string       `db:"Uid"`
+		PayType         string       `db:"PayType"`
+		PayTypeTradeNo  string       `db:"PayTypeTradeNo"`
+		OutRequestNo    string       `db:"OutRequestNo"`
+		DimensionalCode string       `db:"DimensionalCode"`
+		BarCode         string       `db:"BarCode"`
 	}
 )
 
-func newOrderDetailsModel(conn sqlx.SqlConn, c cache.CacheConf, opts ...cache.Option) *defaultOrderDetailsModel {
+func newOrderDetailsModel(conn sqlx.SqlConn, c cache.CacheConf) *defaultOrderDetailsModel {
 	return &defaultOrderDetailsModel{
-		CachedConn: sqlc.NewConn(conn, c, opts...),
-		table:      "`OrderDetails`",
+		CachedConn: sqlc.NewConn(conn, c),
+		table:      "`orderDetails`",
 	}
 }
 
@@ -87,8 +90,8 @@ func (m *defaultOrderDetailsModel) FindOne(ctx context.Context, uid string) (*Or
 func (m *defaultOrderDetailsModel) Insert(ctx context.Context, data *OrderDetails) (sql.Result, error) {
 	orderDetailsUidKey := fmt.Sprintf("%s%v", cacheOrderDetailsUidPrefix, data.Uid)
 	ret, err := m.ExecCtx(ctx, func(ctx context.Context, conn sqlx.SqlConn) (result sql.Result, err error) {
-		query := fmt.Sprintf("insert into %s (%s) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", m.table, orderDetailsRowsExpectAutoSet)
-		return conn.ExecCtx(ctx, query, data.PayStatus, data.PayDate, data.PayTime, data.TotalFee, data.PayCouponFee, data.PayOutTradeNo, data.PayErrDesc, data.Uid, data.PayType, data.PayTypeTradeNo)
+		query := fmt.Sprintf("insert into %s (%s) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", m.table, orderDetailsRowsExpectAutoSet)
+		return conn.ExecCtx(ctx, query, data.PayStatus, data.PayDate, data.PayTime, data.TotalFee, data.PayCouponFee, data.PayOutTradeNo, data.PayErrDesc, data.Uid, data.PayType, data.PayTypeTradeNo, data.OutRequestNo, data.DimensionalCode, data.BarCode)
 	}, orderDetailsUidKey)
 	return ret, err
 }
@@ -97,7 +100,7 @@ func (m *defaultOrderDetailsModel) Update(ctx context.Context, data *OrderDetail
 	orderDetailsUidKey := fmt.Sprintf("%s%v", cacheOrderDetailsUidPrefix, data.Uid)
 	_, err := m.ExecCtx(ctx, func(ctx context.Context, conn sqlx.SqlConn) (result sql.Result, err error) {
 		query := fmt.Sprintf("update %s set %s where `Uid` = ?", m.table, orderDetailsRowsWithPlaceHolder)
-		return conn.ExecCtx(ctx, query, data.PayStatus, data.PayDate, data.PayTime, data.TotalFee, data.PayCouponFee, data.PayOutTradeNo, data.PayErrDesc, data.PayType, data.PayTypeTradeNo, data.Uid)
+		return conn.ExecCtx(ctx, query, data.PayStatus, data.PayDate, data.PayTime, data.TotalFee, data.PayCouponFee, data.PayOutTradeNo, data.PayErrDesc, data.PayType, data.PayTypeTradeNo, data.OutRequestNo, data.DimensionalCode, data.BarCode, data.Uid)
 	}, orderDetailsUidKey)
 	return err
 }

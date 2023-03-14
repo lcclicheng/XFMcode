@@ -32,6 +32,7 @@ func (l *RequestConsumptionLogic) RequestConsumption(req *types.RequestConsumpti
 		return &types.RequestConsumptionResponse{}, err
 	}
 	return &types.RequestConsumptionResponse{
-		Url: resp.Url,
+		DimensionalCode: resp.DimensionalCode,
+		BarCode:         resp.BarCode,
 	}, nil
 }
