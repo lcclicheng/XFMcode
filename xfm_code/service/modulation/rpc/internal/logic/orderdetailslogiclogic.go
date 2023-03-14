@@ -62,9 +62,9 @@ func (l *OrderDetailsLogicLogic) OrderDetailsLogic(in *modulation.OrderDetailsRe
 	}
 	//time := utils.NullTime{}
 	result = &modulation.OrderDetailsResp{
-		PayStatus: rel.PayStatus,
-		//PayDate:        time.UnmarshalJSON(rel.PayDate),
-		//PayTime:        rel.PayTime,
+		PayStatus:       rel.PayStatus,
+		PayDate:         rel.PayDate.Time.Format("2006-01-02 15:04:05"),
+		PayTime:         rel.PayTime.Time.Format("2006-01-02"),
 		TotalFee:        rel.TotalFee,
 		PayCouponFee:    rel.PayCouponFee,
 		PayOutTradeNo:   rel.PayOutTradeNo,
