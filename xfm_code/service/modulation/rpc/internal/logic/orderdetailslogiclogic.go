@@ -2,6 +2,7 @@ package logic
 
 import (
 	"context"
+	"fmt"
 	"github.com/zeromicro/go-zero/core/logx"
 	"github.com/zeromicro/go-zero/core/stores/builder"
 	"modulation/rpc/internal/svc"
@@ -35,46 +36,53 @@ func NewOrderDetailsLogicLogic(ctx context.Context, svcCtx *svc.ServiceContext) 
 func (l *OrderDetailsLogicLogic) OrderDetailsLogic(in *modulation.OrderDetailsReq) (result *modulation.OrderDetailsResp, err error) {
 	defer func() {
 		if r := recover(); r != nil {
-			_, err = derror.ResponsePanicErr(nil, r.(string))
+			err = r.(error)
 			logx.Error(err, "OrderDetailsLogic_recover()", "in", in)
 			debug.PrintStack()
 		}
 	}()
-	prams := make(map[string]string, 2)
-	prams["OutRequestNo"] = in.OutRequestNo
-	prams["PayOutTradeNo"] = in.PayOutTradeNo
-	where := ""
-	args := []string{}
 
-	if prams["OutRequestNo"] != "" {
-		where += " AND OutRequestNo=? "
-		args = append(args, prams["PayOutTradeNo"])
-
-		delete(prams, prams["PayOutTradeNo"])
-
-	} else if prams["PayOutTradeNo"] != "" {
-		where += " AND PayOutTradeNo=? "
-		args = append(args, prams["PayOutTradeNo"])
-
-		delete(prams, prams["OutRequestNo"])
-
+	prams := make(map[string]string)
+	if in.OutRequestNo == "" && in.PayOutTradeNo == "" {
+		obj, err := derror.ResponseParaErr(result, "Parameter cannot be empty")
+		result = InterfaceToStruct(obj)
+		return result, err
 	}
+
+	where := ""
+	args := make([]interface{}, 1)
+
+	if in.OutRequestNo != "" {
+		prams["OutRequestNo"] = in.OutRequestNo
+		where += " OutRequestNo=? "
+		args = append(args, prams["OutRequestNo"])
+
+	} else {
+		prams["PayOutTradeNo"] = in.PayOutTradeNo
+		where += " PayOutTradeNo=? "
+		args = append(args, prams["PayOutTradeNo"])
+	}
+	prams["PayOutTradeNo"] = in.PayOutTradeNo
+	where += " AND OutRequestNo=? "
+	args = append(args, prams["PayOutTradeNo"])
 
 	err = dhttp.ParamsCheck(prams)
 	if err != nil {
-		obj, err := derror.ResponseErr(nil, err)
+		obj, err := derror.ResponseErr(result, err)
 		result = InterfaceToStruct(obj)
 		return result, err
 	}
 
 	var userBuilderQueryRows = strings.Join(builder.RawFieldNames(&model.OrderDetails{}), ",")
 	sql := "SELECT " + userBuilderQueryRows + " FROM orderDetails WHERE #{where} ORDER BY PayTime DESC LIMIT 1,10"
-
+	sql = strings.Replace(sql, "#{where}", where, -1)
 	cli := dmrdb.GetMysqlPoolCli(DBURL, 20)
-	relData, err := cli.QuerySqlForMap(sql, 5*time.Second, args)
+	relData, err := cli.QuerySqlForMap(sql, 5*time.Second, args...)
 	if err != nil {
+		fmt.Println("sql===>", sql)
+		fmt.Println("==>", err)
 		logx.Error(err, "mysql查询错误", "args", args, "sql", sql)
-		obj, err := derror.ResponseDBErr(nil, "DB failed to query")
+		obj, err := derror.ResponseDBErr(result, "DB failed to query")
 		result = InterfaceToStruct(obj)
 		return result, err
 	}

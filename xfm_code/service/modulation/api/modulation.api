@@ -19,8 +19,8 @@ type (
 
 type (
 	OrderDetailsReq {
-		OutRequestNo  string `form:"outRequestNo"`
-		PayOutTradeNo string `form:"payOutTradeNo"`
+		OutRequestNo  string `json:"outRequestNo"`
+		PayOutTradeNo string `json:"payOutTradeNo"`
 	}
 
 	Data {

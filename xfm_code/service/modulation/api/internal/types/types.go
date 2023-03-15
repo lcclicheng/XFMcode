@@ -19,8 +19,8 @@ type RequestConsumptionResponse struct {
 }
 
 type OrderDetailsReq struct {
-	OutRequestNo  string `form:"outRequestNo"`
-	PayOutTradeNo string `form:"payOutTradeNo"`
+	OutRequestNo  string `json:"outRequestNo"`
+	PayOutTradeNo string `json:"payOutTradeNo"`
 }
 
 type Data struct {
