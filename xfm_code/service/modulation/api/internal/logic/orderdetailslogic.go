@@ -33,22 +33,20 @@ func (l *OrderDetailsLogic) OrderDetails(req *types.OrderDetailsReq) (*types.Ord
 		return &types.OrderDetailsResp{}, err
 	}
 	result := &types.OrderDetailsResp{}
-	for _, v1 := range resp.Data {
-		for _, v2 := range result.OrderDetailsResp {
-			v2.PayStatus = v1.PayStatus
-			v2.PayDate = v1.PayDate
-			v2.PayTime = v1.PayTime
-			v2.TotalFee = v1.TotalFee
-			v2.PayCouponFee = v1.PayCouponFee
-			v2.PayOutTradeNo = v1.PayOutTradeNo
-			v2.PayErrDesc = v1.PayErrDesc
-			v2.Uid = v1.Uid
-			v2.PayType = v1.PayType
-			v2.PayTypeTradeNo = v1.PayTypeTradeNo
-			v2.OutRequestNo = v1.OutRequestNo
-			v2.DimensionalCode = v1.DimensionalCode
-			v2.BarCode = v1.BarCode
-		}
+	for k, v := range resp.Data {
+		result.OrderDetailsResp[k].PayStatus = v.PayStatus
+		result.OrderDetailsResp[k].PayDate = v.PayDate
+		result.OrderDetailsResp[k].PayTime = v.PayTime
+		result.OrderDetailsResp[k].TotalFee = v.TotalFee
+		result.OrderDetailsResp[k].PayCouponFee = v.PayCouponFee
+		result.OrderDetailsResp[k].PayOutTradeNo = v.PayOutTradeNo
+		result.OrderDetailsResp[k].PayErrDesc = v.PayErrDesc
+		result.OrderDetailsResp[k].Uid = v.Uid
+		result.OrderDetailsResp[k].PayType = v.PayType
+		result.OrderDetailsResp[k].PayTypeTradeNo = v.PayTypeTradeNo
+		result.OrderDetailsResp[k].OutRequestNo = v.OutRequestNo
+		result.OrderDetailsResp[k].DimensionalCode = v.DimensionalCode
+		result.OrderDetailsResp[k].BarCode = v.BarCode
 	}
 	return result, nil
 }

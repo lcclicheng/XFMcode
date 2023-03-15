@@ -79,22 +79,20 @@ func (l *OrderDetailsLogicLogic) OrderDetailsLogic(in *modulation.OrderDetailsRe
 		return result, err
 	}
 
-	for _, v1 := range relData {
-		for _, v2 := range result.Data {
-			v2.PayStatus = v1["PayStatus"]
-			v2.PayDate = v1["PayDate"]
-			v2.PayTime = v1["PayTime"]
-			v2.TotalFee = v1["TotalFee"]
-			v2.PayCouponFee = v1["PayCouponFee"]
-			v2.PayOutTradeNo = v1["PayOutTradeNo"]
-			v2.PayErrDesc = v1["PayErrDesc"]
-			v2.Uid = v1["Uid"]
-			v2.PayType = v1["PayType"]
-			v2.PayTypeTradeNo = v1["PayTypeTradeNo"]
-			v2.OutRequestNo = v1["OutRequestNo"]
-			v2.DimensionalCode = v1["DimensionalCode"]
-			v2.BarCode = v1["BarCode"]
-		}
+	for k, v := range relData {
+		result.Data[k].PayStatus = v["PayStatus"]
+		result.Data[k].PayDate = v["PayDate"]
+		result.Data[k].PayTime = v["PayTime"]
+		result.Data[k].TotalFee = v["TotalFee"]
+		result.Data[k].PayCouponFee = v["PayCouponFee"]
+		result.Data[k].PayOutTradeNo = v["PayOutTradeNo"]
+		result.Data[k].PayErrDesc = v["PayErrDesc"]
+		result.Data[k].Uid = v["Uid"]
+		result.Data[k].PayType = v["PayType"]
+		result.Data[k].PayTypeTradeNo = v["PayTypeTradeNo"]
+		result.Data[k].OutRequestNo = v["OutRequestNo"]
+		result.Data[k].DimensionalCode = v["DimensionalCode"]
+		result.Data[k].BarCode = v["BarCode"]
 	}
 	obj, err := derror.ResponseSuccess(result)
 	result = InterfaceToStruct(obj)
