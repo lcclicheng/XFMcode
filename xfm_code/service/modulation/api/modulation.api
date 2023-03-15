@@ -23,7 +23,7 @@ type (
 		PayOutTradeNo string `form:"payOutTradeNo"`
 	}
 
-	OrderDetailsResp {
+	Data {
 		PayStatus       string `json:"payStatus"`
 		PayDate         string `json:"payDate"`
 		PayTime         string `json:"payTime"`
@@ -37,6 +37,9 @@ type (
 		OutRequestNo    string `json:"outRequestNo"`
 		DimensionalCode string `json:"dimensionalCode"`
 		BarCode         string `json:"barCode"`
+	}
+	OrderDetailsResp {
+		OrderDetailsResp []Data `json:"orderDetailsResp"`
 	}
 )
 

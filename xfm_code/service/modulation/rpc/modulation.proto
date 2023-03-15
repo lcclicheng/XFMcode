@@ -21,19 +21,22 @@ message OrderDetailsReq {
   string payOutTradeNo=2;
 }
 message OrderDetailsResp {
-  string payStatus=1;
-  string payDate=2;
-  string payTime=3;
-  string totalFee=4;
-  string payCouponFee=5;
-  string payOutTradeNo=6;
-  string payErrDesc=7;
-  string uid=8;
-  string payType=9;
-  string payTypeTradeNo=10;
-  string outRequestNo=13;
-  string dimensionalCode = 11;
-  string barCode=12;
+  repeated Data data=1;
+  message Data{
+    string payStatus=1;
+    string payDate=2;
+    string payTime=3;
+    string totalFee=4;
+    string payCouponFee=5;
+    string payOutTradeNo=6;
+    string payErrDesc=7;
+    string uid=8;
+    string payType=9;
+    string payTypeTradeNo=10;
+    string outRequestNo=13;
+    string dimensionalCode = 11;
+    string barCode=12;
+  }
 }
 service modulationRpc {
   //查询消费码状态

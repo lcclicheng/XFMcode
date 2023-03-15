@@ -32,19 +32,23 @@ func (l *OrderDetailsLogic) OrderDetails(req *types.OrderDetailsReq) (*types.Ord
 	if err != nil {
 		return &types.OrderDetailsResp{}, err
 	}
-	return &types.OrderDetailsResp{
-		PayStatus:       resp.PayStatus,
-		PayDate:         resp.PayDate,
-		PayTime:         resp.PayTime,
-		TotalFee:        resp.TotalFee,
-		PayCouponFee:    resp.PayCouponFee,
-		PayOutTradeNo:   resp.PayOutTradeNo,
-		PayErrDesc:      resp.PayErrDesc,
-		Uid:             resp.Uid,
-		PayType:         resp.PayType,
-		PayTypeTradeNo:  resp.PayTypeTradeNo,
-		OutRequestNo:    resp.OutRequestNo,
-		DimensionalCode: resp.DimensionalCode,
-		BarCode:         resp.BarCode,
-	}, nil
+	result := &types.OrderDetailsResp{}
+	for _, v1 := range resp.Data {
+		for _, v2 := range result.OrderDetailsResp {
+			v2.PayStatus = v1.PayStatus
+			v2.PayDate = v1.PayDate
+			v2.PayTime = v1.PayTime
+			v2.TotalFee = v1.TotalFee
+			v2.PayCouponFee = v1.PayCouponFee
+			v2.PayOutTradeNo = v1.PayOutTradeNo
+			v2.PayErrDesc = v1.PayErrDesc
+			v2.Uid = v1.Uid
+			v2.PayType = v1.PayType
+			v2.PayTypeTradeNo = v1.PayTypeTradeNo
+			v2.OutRequestNo = v1.OutRequestNo
+			v2.DimensionalCode = v1.DimensionalCode
+			v2.BarCode = v1.BarCode
+		}
+	}
+	return result, nil
 }

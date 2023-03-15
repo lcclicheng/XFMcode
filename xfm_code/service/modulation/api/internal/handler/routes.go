@@ -4,7 +4,7 @@ package handler
 import (
 	"net/http"
 
-	"modulation/api/internal/svc"
+	"api/internal/svc"
 
 	"github.com/zeromicro/go-zero/rest"
 )

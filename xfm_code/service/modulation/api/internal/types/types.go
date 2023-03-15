@@ -23,7 +23,7 @@ type OrderDetailsReq struct {
 	PayOutTradeNo string `form:"payOutTradeNo"`
 }
 
-type OrderDetailsResp struct {
+type Data struct {
 	PayStatus       string `json:"payStatus"`
 	PayDate         string `json:"payDate"`
 	PayTime         string `json:"payTime"`
@@ -37,4 +37,8 @@ type OrderDetailsResp struct {
 	OutRequestNo    string `json:"outRequestNo"`
 	DimensionalCode string `json:"dimensionalCode"`
 	BarCode         string `json:"barCode"`
+}
+
+type OrderDetailsResp struct {
+	OrderDetailsResp []Data `json:"orderDetailsResp"`
 }

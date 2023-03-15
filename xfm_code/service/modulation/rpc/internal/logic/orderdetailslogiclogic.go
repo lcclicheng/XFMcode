@@ -32,7 +32,7 @@ func NewOrderDetailsLogicLogic(ctx context.Context, svcCtx *svc.ServiceContext) 
 }
 
 // OrderDetailsLogic 二维码订单查询
-func (l *OrderDetailsLogicLogic) OrderDetailsLogic(in *modulation.OrderDetailsReq) (result []*modulation.OrderDetailsResp, err error) {
+func (l *OrderDetailsLogicLogic) OrderDetailsLogic(in *modulation.OrderDetailsReq) (result *modulation.OrderDetailsResp, err error) {
 	defer func() {
 		if r := recover(); r != nil {
 			_, err = derror.ResponsePanicErr(nil, r.(string))
@@ -79,23 +79,22 @@ func (l *OrderDetailsLogicLogic) OrderDetailsLogic(in *modulation.OrderDetailsRe
 		return result, err
 	}
 
-	for k, v := range relData {
-		result[k] = &modulation.OrderDetailsResp{
-			PayStatus:       v["PayStatus"],
-			PayDate:         v["PayDate"],
-			PayTime:         v["PayTime"],
-			TotalFee:        v["TotalFee"],
-			PayCouponFee:    v["PayCouponFee"],
-			PayOutTradeNo:   v["PayOutTradeNo"],
-			PayErrDesc:      v["PayErrDesc"],
-			Uid:             v["Uid"],
-			PayType:         v["PayType"],
-			PayTypeTradeNo:  v["PayTypeTradeNo"],
-			OutRequestNo:    v["OutRequestNo"],
-			DimensionalCode: v["DimensionalCode"],
-			BarCode:         v["BarCode"],
+	for _, v1 := range relData {
+		for _, v2 := range result.Data {
+			v2.PayStatus = v1["PayStatus"]
+			v2.PayDate = v1["PayDate"]
+			v2.PayTime = v1["PayTime"]
+			v2.TotalFee = v1["TotalFee"]
+			v2.PayCouponFee = v1["PayCouponFee"]
+			v2.PayOutTradeNo = v1["PayOutTradeNo"]
+			v2.PayErrDesc = v1["PayErrDesc"]
+			v2.Uid = v1["Uid"]
+			v2.PayType = v1["PayType"]
+			v2.PayTypeTradeNo = v1["PayTypeTradeNo"]
+			v2.OutRequestNo = v1["OutRequestNo"]
+			v2.DimensionalCode = v1["DimensionalCode"]
+			v2.BarCode = v1["BarCode"]
 		}
-
 	}
 	obj, err := derror.ResponseSuccess(result)
 	result = InterfaceToStruct(obj)
@@ -103,7 +102,7 @@ func (l *OrderDetailsLogicLogic) OrderDetailsLogic(in *modulation.OrderDetailsRe
 }
 
 // InterfaceToStruct interface转任意类型，每个logic.go中返回类型`*modulation.OrderDetailsResp`记得替换成logic函数的返回类型
-func InterfaceToStruct(object interface{}) []*modulation.OrderDetailsResp {
-	obj := object.([]*modulation.OrderDetailsResp)
+func InterfaceToStruct(object interface{}) *modulation.OrderDetailsResp {
+	obj := object.(*modulation.OrderDetailsResp)
 	return obj
 }

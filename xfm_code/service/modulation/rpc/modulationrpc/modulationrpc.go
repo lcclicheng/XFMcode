@@ -17,6 +17,7 @@ type (
 	CodeStatusResponse         = modulation.CodeStatusResponse
 	OrderDetailsReq            = modulation.OrderDetailsReq
 	OrderDetailsResp           = modulation.OrderDetailsResp
+	OrderDetailsResp_Data      = modulation.OrderDetailsResp_Data
 	RequestConsumptionRequest  = modulation.RequestConsumptionRequest
 	RequestConsumptionResponse = modulation.RequestConsumptionResponse
 
