@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package wecart;
+option go_package="./wecart";
+
+message InitiateRequestReq{
+  string url = 1;
+}
+
+message InitiateRequestResp {
+  repeated Data data=1;
+  message Data{
+    string Status=1;
+  }
+}
+
+service Wecart {
+  rpc InitiateRequestLogic(InitiateRequestReq) returns(InitiateRequestResp);
+}

@@ -1,0 +1,19 @@
+type (
+    InitiateRequestReq {
+        Url string `json:"url"`
+    }
+
+    InitiateRequestResp {
+        InitiateRequestResp []Data `json:"initiateRequestResp"`
+    }
+    Data {
+        Status string `json:"status"`
+    }
+)
+
+service wecart-api {
+    @server(
+        handler: InitiateRequestHandler
+    )
+    post /InitiateRequestLogic (InitiateRequestReq) returns (InitiateRequestResp)
+}

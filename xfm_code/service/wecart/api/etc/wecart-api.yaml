@@ -1,0 +1,8 @@
+Name: wecart-api
+Host: 0.0.0.0
+Port: 8888
+Modulation:
+  Etcd:
+    Hosts:
+      - localhost:2379
+    Key: modulation.rpc
