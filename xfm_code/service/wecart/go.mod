@@ -1,11 +1,15 @@
 module wecart
 
-go 1.20
+go 1.18
+
+replace tools => ../tools
 
 require (
+	github.com/wechatpay-apiv3/wechatpay-go v0.2.16
 	github.com/zeromicro/go-zero v1.5.0
 	google.golang.org/grpc v1.53.0
 	google.golang.org/protobuf v1.28.2-0.20220831092852-f930b1dc76e8
+	tools v0.0.0-00010101000000-000000000000
 )
 
 require (
@@ -25,6 +29,7 @@ require (
 	github.com/go-openapi/jsonreference v0.20.0 // indirect
 	github.com/go-openapi/swag v0.19.14 // indirect
 	github.com/go-redis/redis/v8 v8.11.5 // indirect
+	github.com/go-sql-driver/mysql v1.7.0 // indirect
 	github.com/gogo/protobuf v1.3.2 // indirect
 	github.com/golang-jwt/jwt/v4 v4.5.0 // indirect
 	github.com/golang/mock v1.6.0 // indirect

@@ -19,14 +19,14 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	Wecart_InitiateRequestLogic_FullMethodName = "/wecart.Wecart/InitiateRequestLogic"
+	Wecart_PlaceAnOrderLogic_FullMethodName = "/wecart.Wecart/PlaceAnOrderLogic"
 )
 
 // WecartClient is the client API for Wecart service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type WecartClient interface {
-	InitiateRequestLogic(ctx context.Context, in *InitiateRequestReq, opts ...grpc.CallOption) (*InitiateRequestResp, error)
+	PlaceAnOrderLogic(ctx context.Context, in *PlaceAnOrderReq, opts ...grpc.CallOption) (*PlaceAnOrderResp, error)
 }
 
 type wecartClient struct {
@@ -37,9 +37,9 @@ func NewWecartClient(cc grpc.ClientConnInterface) WecartClient {
 	return &wecartClient{cc}
 }
 
-func (c *wecartClient) InitiateRequestLogic(ctx context.Context, in *InitiateRequestReq, opts ...grpc.CallOption) (*InitiateRequestResp, error) {
-	out := new(InitiateRequestResp)
-	err := c.cc.Invoke(ctx, Wecart_InitiateRequestLogic_FullMethodName, in, out, opts...)
+func (c *wecartClient) PlaceAnOrderLogic(ctx context.Context, in *PlaceAnOrderReq, opts ...grpc.CallOption) (*PlaceAnOrderResp, error) {
+	out := new(PlaceAnOrderResp)
+	err := c.cc.Invoke(ctx, Wecart_PlaceAnOrderLogic_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -50,7 +50,7 @@ func (c *wecartClient) InitiateRequestLogic(ctx context.Context, in *InitiateReq
 // All implementations must embed UnimplementedWecartServer
 // for forward compatibility
 type WecartServer interface {
-	InitiateRequestLogic(context.Context, *InitiateRequestReq) (*InitiateRequestResp, error)
+	PlaceAnOrderLogic(context.Context, *PlaceAnOrderReq) (*PlaceAnOrderResp, error)
 	mustEmbedUnimplementedWecartServer()
 }
 
@@ -58,8 +58,8 @@ type WecartServer interface {
 type UnimplementedWecartServer struct {
 }
 
-func (UnimplementedWecartServer) InitiateRequestLogic(context.Context, *InitiateRequestReq) (*InitiateRequestResp, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method InitiateRequestLogic not implemented")
+func (UnimplementedWecartServer) PlaceAnOrderLogic(context.Context, *PlaceAnOrderReq) (*PlaceAnOrderResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PlaceAnOrderLogic not implemented")
 }
 func (UnimplementedWecartServer) mustEmbedUnimplementedWecartServer() {}
 
@@ -74,20 +74,20 @@ func RegisterWecartServer(s grpc.ServiceRegistrar, srv WecartServer) {
 	s.RegisterService(&Wecart_ServiceDesc, srv)
 }
 
-func _Wecart_InitiateRequestLogic_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(InitiateRequestReq)
+func _Wecart_PlaceAnOrderLogic_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PlaceAnOrderReq)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(WecartServer).InitiateRequestLogic(ctx, in)
+		return srv.(WecartServer).PlaceAnOrderLogic(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Wecart_InitiateRequestLogic_FullMethodName,
+		FullMethod: Wecart_PlaceAnOrderLogic_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(WecartServer).InitiateRequestLogic(ctx, req.(*InitiateRequestReq))
+		return srv.(WecartServer).PlaceAnOrderLogic(ctx, req.(*PlaceAnOrderReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -100,8 +100,8 @@ var Wecart_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*WecartServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "InitiateRequestLogic",
-			Handler:    _Wecart_InitiateRequestLogic_Handler,
+			MethodName: "PlaceAnOrderLogic",
+			Handler:    _Wecart_PlaceAnOrderLogic_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

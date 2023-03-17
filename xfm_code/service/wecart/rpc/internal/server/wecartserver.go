@@ -22,7 +22,7 @@ func NewWecartServer(svcCtx *svc.ServiceContext) *WecartServer {
 	}
 }
 
-func (s *WecartServer) InitiateRequestLogic(ctx context.Context, in *wecart.InitiateRequestReq) (*wecart.InitiateRequestResp, error) {
-	l := logic.NewInitiateRequestLogicLogic(ctx, s.svcCtx)
-	return l.InitiateRequestLogic(in)
+func (s *WecartServer) PlaceAnOrderLogic(ctx context.Context, in *wecart.PlaceAnOrderReq) (*wecart.PlaceAnOrderResp, error) {
+	l := logic.NewPlaceAnOrderLogicLogic(ctx, s.svcCtx)
+	return l.PlaceAnOrderLogic(in)
 }

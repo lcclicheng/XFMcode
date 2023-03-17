@@ -14,8 +14,8 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 		[]rest.Route{
 			{
 				Method:  http.MethodPost,
-				Path:    "/InitiateRequestLogic",
-				Handler: InitiateRequestHandler(serverCtx),
+				Path:    "/PlaceAnOrderLogic",
+				Handler: PlaceAnOrderHandler(serverCtx),
 			},
 		},
 	)

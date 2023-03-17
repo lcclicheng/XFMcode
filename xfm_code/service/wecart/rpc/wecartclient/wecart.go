@@ -13,12 +13,12 @@ import (
 )
 
 type (
-	InitiateRequestReq       = wecart.InitiateRequestReq
-	InitiateRequestResp      = wecart.InitiateRequestResp
-	InitiateRequestResp_Data = wecart.InitiateRequestResp_Data
+	PlaceAnOrderReq       = wecart.PlaceAnOrderReq
+	PlaceAnOrderResp      = wecart.PlaceAnOrderResp
+	PlaceAnOrderResp_Data = wecart.PlaceAnOrderResp_Data
 
 	Wecart interface {
-		InitiateRequestLogic(ctx context.Context, in *InitiateRequestReq, opts ...grpc.CallOption) (*InitiateRequestResp, error)
+		PlaceAnOrderLogic(ctx context.Context, in *PlaceAnOrderReq, opts ...grpc.CallOption) (*PlaceAnOrderResp, error)
 	}
 
 	defaultWecart struct {
@@ -32,7 +32,7 @@ func NewWecart(cli zrpc.Client) Wecart {
 	}
 }
 
-func (m *defaultWecart) InitiateRequestLogic(ctx context.Context, in *InitiateRequestReq, opts ...grpc.CallOption) (*InitiateRequestResp, error) {
+func (m *defaultWecart) PlaceAnOrderLogic(ctx context.Context, in *PlaceAnOrderReq, opts ...grpc.CallOption) (*PlaceAnOrderResp, error) {
 	client := wecart.NewWecartClient(m.cli.Conn())
-	return client.InitiateRequestLogic(ctx, in, opts...)
+	return client.PlaceAnOrderLogic(ctx, in, opts...)
 }
