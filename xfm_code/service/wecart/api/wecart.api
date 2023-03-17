@@ -1,19 +1,31 @@
 type (
-    InitiateRequestReq {
-        Url string `json:"url"`
-    }
+	PlaceAnOrderReq {
+		Appid       string `json:"appid"`
+		Mchid       string `json:"mchid"`
+		Description string `json:"description"`
+		OutTradeNo  string `json:"outTradeNo"`
+		Attach      string `json:"attach"`
+		NotifyUrl   string `json:"notifyUrl"`
+		Openid      string `json:"openid"`
+	}
 
-    InitiateRequestResp {
-        InitiateRequestResp []Data `json:"initiateRequestResp"`
-    }
-    Data {
-        Status string `json:"status"`
-    }
+	PlaceAnOrderResp {
+		PlaceAnOrderResp []Data `json:"placeAnOrderResp"`
+	}
+	Data {
+		PrepayId  string `json:"prepayId"`
+		Appid     string `json:"appid"`
+		TimeStamp string `json:"timeStamp"`
+		NonceStr  string `json:"nonceStr"`
+		Package   string `json:"package"`
+		SignType  string `json:"signType"`
+		PaySign   string `json:"paySign"`
+	}
 )
 
 service wecart-api {
-    @server(
-        handler: InitiateRequestHandler
-    )
-    post /InitiateRequestLogic (InitiateRequestReq) returns (InitiateRequestResp)
+	@server(
+		handler: PlaceAnOrderHandler
+	)
+	post /PlaceAnOrderLogic (PlaceAnOrderReq) returns (PlaceAnOrderResp)
 }
